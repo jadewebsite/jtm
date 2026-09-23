@@ -1,0 +1,1126 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Josheen Techmoto</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; background: #0a0a0a; color: #f0f0f0; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid #222;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 64px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-img {
+    width: 44px; height: 44px; border-radius: 50%;
+    object-fit: cover; background: #fff;
+  }
+  .nav-logo-text { font-size: 18px; font-weight: 700; color: #fff; }
+  .nav-logo-text span { color: #e63946; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: #e63946; }
+
+  /* HERO / BANNER */
+  .hero {
+    margin-top: 64px;
+  }
+  .hero-banner-img {
+    width: 100%; display: block;
+    max-height: 420px; object-fit: cover; object-position: center;
+  }
+  .hero-btns-bar {
+    background: #111; border-bottom: 1px solid #222;
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    padding: 18px 20px;
+  }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: #e63946; color: #fff; padding: 13px 30px; border-radius: 6px;
+    font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #c1121f; }
+  .btn-outline {
+    border: 1px solid #555; color: #ccc; padding: 13px 30px; border-radius: 6px;
+    font-size: 15px; font-weight: 600; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: #e63946; color: #e63946; background: transparent; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: #111; border-top: 1px solid #222; border-bottom: 1px solid #222;
+    display: flex; justify-content: center; flex-wrap: wrap;
+  }
+  .stat-item { padding: 24px 48px; text-align: center; border-right: 1px solid #222; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 28px; font-weight: 900; color: #e63946; }
+  .stat-label { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 80px 20px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 700; color: #e63946; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .section-title { font-size: clamp(26px, 4vw, 38px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+  .section-sub { font-size: 15px; color: #777; max-width: 540px; }
+
+  /* ABOUT */
+  .about-section { background: #0d0d0d; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 50px; }
+  .about-visual {
+    background: #fff;
+    border: 1px solid #2a2a2a; border-radius: 12px;
+    overflow: hidden;
+    height: 320px; display: flex; align-items: center; justify-content: center;
+  }
+  .about-visual img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+  .about-text p { color: #999; font-size: 15px; margin-bottom: 16px; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    background: #1a1a1a; border: 1px solid #2a2a2a; color: #bbb;
+    font-size: 12px; padding: 5px 14px; border-radius: 20px;
+  }
+
+  /* PRODUCTS */
+  .products-section { background: #080808; }
+  .products-grid {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 24px; margin-top: 50px;
+  }
+  .product-card {
+    background: #111; border: 1px solid #1e1e1e; border-radius: 14px;
+    overflow: hidden; cursor: pointer; width: 270px; flex-shrink: 0;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .product-card:hover { border-color: #e63946; transform: translateY(-6px); box-shadow: 0 8px 32px rgba(230,57,70,0.15); }
+  .product-thumb {
+    height: 170px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #141414, #1e1010);
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .product-thumb svg { width: 80px; height: 80px; }
+  .product-body { padding: 18px; }
+  .product-cat { font-size: 10px; color: #e63946; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+  .product-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+  .product-desc { font-size: 12px; color: #666; margin-bottom: 14px; line-height: 1.5; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price { font-size: 14px; font-weight: 800; color: #e63946; }
+  .product-btn {
+    background: #1e1e1e; border: 1px solid #333; color: #ccc;
+    font-size: 11px; font-weight: 700; padding: 6px 14px; border-radius: 6px;
+    cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .product-btn:hover { background: #e63946; border-color: #e63946; color: #fff; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.82); backdrop-filter: blur(5px);
+    align-items: center; justify-content: center;
+    padding: 12px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: #131313; border: 1px solid #2a2a2a; border-radius: 16px;
+    max-width: 500px; width: 100%;
+    max-height: calc(100vh - 24px);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    animation: modalIn 0.22s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.94) translateY(14px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0); }
+  }
+  .modal-thumb {
+    flex-shrink: 0;
+    height: 150px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #141414, #1e0a0a);
+    border-bottom: 1px solid #222; position: relative;
+  }
+  .modal-thumb svg { width: 90px; height: 90px; }
+  .modal-close {
+    position: absolute; top: 10px; right: 12px;
+    background: rgba(0,0,0,0.55); border: 1px solid #333; color: #aaa;
+    width: 30px; height: 30px; border-radius: 50%; font-size: 15px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-close:hover { background: #e63946; color: #fff; border-color: #e63946; }
+  .modal-scroll { overflow-y: auto; flex: 1; }
+  .modal-body { padding: 22px 24px 24px; }
+  .modal-cat { font-size: 10px; color: #e63946; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+  .modal-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+  .modal-desc { font-size: 13px; color: #888; line-height: 1.65; margin-bottom: 16px; }
+  .modal-features { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  .modal-features li { font-size: 13px; color: #bbb; display: flex; align-items: flex-start; gap: 9px; line-height: 1.4; }
+  .modal-features li::before { content: '✓'; color: #4ade80; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+  .modal-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #1e1e1e; padding: 16px 24px 20px; flex-shrink: 0; }
+  .modal-price { font-size: 18px; font-weight: 900; color: #e63946; }
+  .modal-inquire-btn {
+    background: #e63946; color: #fff; border: none;
+    padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .modal-inquire-btn:hover { background: #c1121f; }
+  @media (max-width: 480px) {
+    .modal-thumb { height: 110px; }
+    .modal-thumb svg { width: 66px; height: 66px; }
+    .modal-body { padding: 16px 16px 16px; }
+    .modal-title { font-size: 17px; }
+    .modal-desc { font-size: 12px; margin-bottom: 12px; }
+    .modal-features li { font-size: 12px; }
+    .modal-footer { padding: 12px 16px 16px; }
+    .modal-price { font-size: 15px; }
+    .modal-inquire-btn { font-size: 12px; padding: 9px 16px; }
+  }
+
+  /* SERVICES */
+  .services-section { background: #0d0d0d; }
+  .services-categories {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 24px; margin-top: 50px;
+  }
+  .service-cat-card {
+    background: #111; border: 1px solid #1e1e1e; border-radius: 12px;
+    padding: 28px 26px; width: 260px; flex-shrink: 0;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .service-cat-card:hover { border-color: #e63946; box-shadow: 0 0 18px rgba(230,57,70,0.12); }
+  .service-cat-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px; padding-bottom: 13px; border-bottom: 1px solid #222;
+  }
+  .service-cat-icon { font-size: 24px; }
+  .service-cat-name { font-size: 13px; font-weight: 800; color: #e63946; text-transform: uppercase; letter-spacing: 1.5px; }
+  .service-cat-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .service-cat-items li {
+    font-size: 13px; color: #aaa;
+    display: flex; align-items: center; gap: 9px;
+    padding: 3px 0;
+  }
+  .service-cat-items li::before { content: '›'; color: #e63946; font-size: 14px; flex-shrink: 0; font-weight: 700; }
+  /* Other Services — centered full row */
+  .other-services-row {
+    width: 100%; display: flex; justify-content: center; margin-top: 0;
+  }
+  .other-services-card {
+    background: #111; border: 1px solid #e63946; border-radius: 12px;
+    padding: 28px 32px; width: 100%; max-width: 880px;
+    box-shadow: 0 0 20px rgba(230,57,70,0.08);
+  }
+  .other-services-header {
+    font-size: 13px; font-weight: 800; color: #e63946;
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+    padding-bottom: 13px; border-bottom: 1px solid #2a1010;
+  }
+  .other-services-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .other-service-pill {
+    background: #161616; border: 1px solid #2a2a2a; border-radius: 8px;
+    padding: 10px 18px; font-size: 13px; color: #ccc; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .other-service-pill:hover { border-color: #e63946; color: #fff; background: #1e0a0a; }
+  .other-service-pill span { font-size: 15px; }
+  .service-cat-card { cursor: pointer; }
+  .other-service-pill { cursor: pointer; }
+
+  /* SERVICE MODAL */
+  .svc-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.82); backdrop-filter: blur(5px);
+    align-items: center; justify-content: center; padding: 12px;
+  }
+  .svc-modal-overlay.active { display: flex; }
+  .svc-modal-box {
+    background: #131313; border: 1px solid #2a2a2a; border-radius: 16px;
+    max-width: 480px; width: 100%;
+    max-height: calc(100vh - 24px);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    animation: modalIn 0.22s ease;
+  }
+  .svc-modal-header {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #1e1e1e;
+    background: linear-gradient(135deg, #141414, #1e0a0a);
+  }
+  .svc-modal-title-wrap { display: flex; align-items: center; gap: 12px; }
+  .svc-modal-icon { font-size: 32px; }
+  .svc-modal-title { font-size: 20px; font-weight: 900; color: #fff; }
+  .svc-modal-close {
+    background: rgba(0,0,0,0.4); border: 1px solid #333; color: #aaa;
+    width: 30px; height: 30px; border-radius: 50%; font-size: 15px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s; flex-shrink: 0;
+  }
+  .svc-modal-close:hover { background: #e63946; color: #fff; border-color: #e63946; }
+  .svc-modal-scroll { overflow-y: auto; flex: 1; padding: 22px 24px 20px; }
+  .svc-modal-cat { font-size: 10px; color: #e63946; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .svc-modal-desc { font-size: 13px; color: #888; line-height: 1.65; margin-bottom: 16px; }
+  .svc-modal-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .svc-modal-list li { font-size: 13px; color: #bbb; display: flex; align-items: flex-start; gap: 9px; line-height: 1.4; }
+  .svc-modal-list li::before { content: '✓'; color: #4ade80; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+  .svc-modal-footer { flex-shrink: 0; padding: 14px 24px 18px; border-top: 1px solid #1e1e1e; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .svc-modal-tag { font-size: 12px; color: #555; font-style: italic; }
+  .svc-modal-btn {
+    background: #e63946; color: #fff; border: none;
+    padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s; white-space: nowrap;
+  }
+  .svc-modal-btn:hover { background: #c1121f; }
+  @media (max-width: 480px) {
+    .svc-modal-header { padding: 14px 16px 12px; }
+    .svc-modal-title { font-size: 17px; }
+    .svc-modal-scroll { padding: 16px; }
+    .svc-modal-footer { padding: 12px 16px 16px; }
+  }
+
+  /* CONTACT */
+  .contact-section { background: #080808; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 20px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 8px;
+    background: rgba(230,57,70,0.12); border: 1px solid rgba(230,57,70,0.25);
+    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .contact-detail .label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+  .contact-detail .value { font-size: 15px; color: #ddd; font-weight: 600; margin-top: 2px; }
+  .contact-detail .value a { color: #ddd; text-decoration: none; transition: color 0.2s; }
+  .contact-detail .value a:hover { color: #e63946; }
+  .hours-card {
+    background: #111; border: 1px solid #1e1e1e; border-radius: 10px; padding: 28px;
+  }
+  .hours-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 18px; border-bottom: 1px solid #222; padding-bottom: 14px; }
+  .hours-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1a1a1a; font-size: 14px; }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-day { color: #888; }
+  .hours-time { color: #ccc; font-weight: 600; }
+  .hours-time.open { color: #4ade80; }
+  .hours-time.closed { color: #e63946; }
+
+  /* MAP */
+  .map-section { background: #0a0a0a; }
+  .map-wrapper {
+    margin-top: 40px; border-radius: 12px; overflow: hidden;
+    border: 1px solid #222; height: 340px; background: #111;
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+  }
+  .map-placeholder-icon { font-size: 48px; }
+  .map-placeholder-text { color: #666; font-size: 14px; }
+  .map-address-badge {
+    background: rgba(230,57,70,0.12); border: 1px solid rgba(230,57,70,0.3);
+    color: #e63946; font-size: 14px; font-weight: 600;
+    padding: 8px 20px; border-radius: 20px;
+  }
+
+  /* SOCIAL */
+  .social-section { background: #0d0d0d; text-align: center; }
+  .social-links { display: flex; gap: 16px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+  .social-link {
+    display: flex; align-items: center; gap: 10px;
+    background: #111; border: 1px solid #222; border-radius: 8px;
+    padding: 12px 24px; color: #ccc; text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-link:hover { border-color: #e63946; color: #e63946; }
+  .social-icon { font-size: 20px; }
+
+  /* CTA BANNER */
+  .cta-section {
+    background: linear-gradient(135deg, #1a0505, #2d1010);
+    border-top: 1px solid #2a1010; border-bottom: 1px solid #2a1010;
+    text-align: center; padding: 70px 20px;
+  }
+  .cta-section h2 { font-size: clamp(24px, 4vw, 38px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+  .cta-section p { color: #999; font-size: 16px; margin-bottom: 32px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-phone {
+    background: #1c7c1c; color: #fff; padding: 13px 30px; border-radius: 6px;
+    font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-phone:hover { background: #145c14; }
+
+  /* FOOTER */
+  footer {
+    background: #060606; border-top: 1px solid #1a1a1a;
+    padding: 40px 20px 20px; text-align: center;
+  }
+  .footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; }
+  .footer-logo-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: #fff; }
+  .footer-logo { font-size: 22px; font-weight: 900; color: #fff; }
+  .footer-logo span { color: #e63946; }
+  .footer-tagline { font-size: 13px; color: #555; margin-bottom: 24px; }
+  .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .footer-links a { font-size: 13px; color: #555; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: #e63946; }
+  .footer-copy { font-size: 12px; color: #333; margin-top: 16px; }
+  .made-with { margin-top: 24px; padding-top: 16px; border-top: 1px solid #1a1a1a; font-size: 12px; color: #777; text-align: center; }
+  .made-with a { color: #aaa; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  .made-with a:hover { color: #e63946; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .stat-item { padding: 20px 24px; }
+    .hero-banner-img { max-height: 220px; }
+    .hero-overlay { padding-bottom: 20px; }
+  }
+</style>
+</head>
+<body>
+
+
+<nav>
+  <a class="nav-logo" href="#">
+    <img class="nav-logo-img" src="Logo.jpg" alt="Josheen Techmoto Logo" />
+    <div class="nav-logo-text">Josheen <span>Techmoto</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.facebook.com/people/Josheen-Techmoto/61570419473946/" class="btn-primary" style="font-size:13px;padding:9px 20px">Visit Facebook</a>
+</nav>
+
+
+<div class="hero">
+  <img class="hero-banner-img" src="banner.jpg" alt="Josheen Techmoto – Auto-Motor Repair Services" />
+</div>
+<div class="hero-btns-bar">
+  <a href="#products" class="btn-primary">Browse Products</a>
+  <a href="#contact" class="btn-outline">Contact Us</a>
+</div>
+
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Products</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1K+</div>
+    <div class="stat-label">Happy Customers</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Authentic Items</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Fast</div>
+    <div class="stat-label">Shipping</div>
+  </div>
+</div>
+
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-label">Who We Are</div>
+    <div class="section-title">About Josheen Techmoto</div>
+    <div class="about-grid">
+      <div class="about-visual">
+        <img src="Logo.jpg" alt="Josheen Techmoto Logo" />
+      </div>
+      <div class="about-text">
+        <p>Josheen Techmoto is a trusted auto and motorcycle repair shop and parts store based in Z6 Baras, Canaman, Camarines Sur. We are passionate about providing riders and vehicle owners with high-quality repair services and genuine products at competitive prices.</p>
+        <p>Whether you're looking for motorcycle spare parts, riding gear, phone accessories, or the newest gadgets — or need your motorcycle or auto serviced — Josheen Techmoto has you covered. We source only authentic and durable products to ensure customer satisfaction.</p>
+        <p>We also serve customers nationwide through our Facebook page with fast shipping and reliable after-sales support.</p>
+        <div class="about-tags">
+          <span class="tag">Auto Repair</span>
+          <span class="tag">Motor Repair</span>
+          <span class="tag">Motorcycle Parts</span>
+          <span class="tag">Tech Gadgets</span>
+          <span class="tag">Riding Gear</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <div class="modal-thumb" id="modalThumb">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-scroll">
+      <div class="modal-body">
+        <div class="modal-cat" id="modalCat"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <ul class="modal-features" id="modalFeatures"></ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-price">Ask for Price</div>
+      <a id="modalInquireBtn" class="modal-inquire-btn" href="https://m.me/61570419473946" target="_blank">
+        💬 Inquire on Facebook
+      </a>
+    </div>
+  </div>
+</div>
+
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <div class="section-title">Our Products</div>
+    <div class="section-sub">Click any product card to see full details. Quality parts and accessories for every need.</div>
+    <div class="products-grid">
+
+      <!-- Engine Spare Parts -->
+      <div class="product-card" onclick="openModal('engine')">
+        <div class="product-thumb">
+          <!-- Realistic engine block with pistons, intake ports, oil pan -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Oil pan -->
+            <path d="M20 72 Q20 78 26 78 L74 78 Q80 78 80 72 L80 68 L20 68 Z" fill="#1a1a1a" stroke="#555" stroke-width="1.2"/>
+            <!-- Engine block body -->
+            <rect x="20" y="38" width="60" height="32" rx="3" fill="#2d2d2d" stroke="#555" stroke-width="1.5"/>
+            <!-- Block surface detail lines -->
+            <line x1="20" y1="50" x2="80" y2="50" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="20" y1="58" x2="80" y2="58" stroke="#3a3a3a" stroke-width="1"/>
+            <!-- Cylinder head -->
+            <rect x="22" y="26" width="56" height="14" rx="2" fill="#333" stroke="#e63946" stroke-width="1.5"/>
+            <!-- Spark plug holes -->
+            <circle cx="36" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/>
+            <circle cx="50" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/>
+            <circle cx="64" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/>
+            <!-- Spark plug bodies -->
+            <rect x="34" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/>
+            <rect x="48" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/>
+            <rect x="62" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/>
+            <!-- Spark plug tips -->
+            <line x1="36" y1="14" x2="36" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="50" y1="14" x2="50" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="64" y1="14" x2="64" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Pistons visible in bores -->
+            <circle cx="36" cy="54" r="7" fill="#252525" stroke="#e63946" stroke-width="1.2"/>
+            <circle cx="36" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/>
+            <circle cx="64" cy="54" r="7" fill="#252525" stroke="#e63946" stroke-width="1.2"/>
+            <circle cx="64" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/>
+            <circle cx="50" cy="54" r="7" fill="#252525" stroke="#ff6b35" stroke-width="1.2"/>
+            <circle cx="50" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/>
+            <!-- Coolant outlet -->
+            <rect x="75" y="42" width="8" height="7" rx="2" fill="#1a3a5c" stroke="#3b82d4" stroke-width="1.2"/>
+            <!-- Oil filler -->
+            <rect x="17" y="42" width="7" height="7" rx="2" fill="#2a1a0a" stroke="#f59e0b" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Motorcycle</div>
+          <div class="product-name">Engine Spare Parts</div>
+          <div class="product-desc">Genuine and aftermarket engine components for various models.</div>
+          <div class="product-footer">
+            <div class="product-price">Ask for Price</div>
+            <button class="product-btn" onclick="event.stopPropagation();window.open('https://m.me/61570419473946','_blank')">Inquire</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LED Lights -->
+      <div class="product-card" onclick="openModal('led')">
+        <div class="product-thumb">
+          <!-- Realistic motorcycle headlight with LED projector lens -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Housing outer -->
+            <path d="M15 40 Q14 30 25 26 L75 26 Q86 30 85 40 L85 62 Q85 70 75 70 L25 70 Q15 70 15 62 Z" fill="#1e1e1e" stroke="#444" stroke-width="1.5"/>
+            <!-- Chrome inner reflector -->
+            <path d="M22 42 Q21 33 30 30 L70 30 Q79 33 78 42 L78 60 Q78 66 70 66 L30 66 Q22 66 22 60 Z" fill="#2a2a2a" stroke="#666" stroke-width="1"/>
+            <!-- Main projector lens -->
+            <circle cx="50" cy="48" r="16" fill="#0a0a1a" stroke="#3b82d4" stroke-width="1.5"/>
+            <circle cx="50" cy="48" r="12" fill="#0d0d2a" stroke="#5ba0f0" stroke-width="1"/>
+            <!-- LED chip array -->
+            <rect x="43" y="44" width="4" height="8" rx="1" fill="#ffffaa" opacity="0.95"/>
+            <rect x="48" y="44" width="4" height="8" rx="1" fill="#ffffff" opacity="0.95"/>
+            <rect x="53" y="44" width="4" height="8" rx="1" fill="#ffffaa" opacity="0.95"/>
+            <!-- Lens glow -->
+            <circle cx="50" cy="48" r="8" fill="none" stroke="#f0f0ff" stroke-width="0.5" opacity="0.4"/>
+            <!-- DRL strip top -->
+            <path d="M26 32 L74 32" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+            <!-- DRL strip bottom -->
+            <path d="M26 64 L74 64" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+            <!-- Turn signal left -->
+            <rect x="16" y="43" width="8" height="10" rx="2" fill="#f59e0b" opacity="0.85"/>
+            <!-- Turn signal right -->
+            <rect x="76" y="43" width="8" height="10" rx="2" fill="#f59e0b" opacity="0.85"/>
+            <!-- Light beam rays -->
+            <line x1="50" y1="26" x2="50" y2="18" stroke="#f0f0ff" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+            <line x1="62" y1="28" x2="68" y2="20" stroke="#f0f0ff" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+            <line x1="38" y1="28" x2="32" y2="20" stroke="#f0f0ff" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Motorcycle</div>
+          <div class="product-name">LED Lights &amp; Accessories</div>
+          <div class="product-desc">High-performance LED headlights, tail lights, and lighting kits.</div>
+          <div class="product-footer">
+            <div class="product-price">Ask for Price</div>
+            <button class="product-btn" onclick="event.stopPropagation();window.open('https://m.me/61570419473946','_blank')">Inquire</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Helmets -->
+      <div class="product-card" onclick="openModal('helmet')">
+        <div class="product-thumb">
+          <!-- Realistic full-face motorcycle helmet -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Helmet shell -->
+            <path d="M18 52 C18 28 26 16 50 16 C74 16 82 28 82 52 L82 64 C82 70 78 74 72 74 L28 74 C22 74 18 70 18 64 Z" fill="#222" stroke="#e63946" stroke-width="1.8"/>
+            <!-- Visor / face shield -->
+            <path d="M25 50 C25 38 30 30 50 30 C70 30 75 38 75 50 L75 62 C75 65 72 67 68 67 L32 67 C28 67 25 65 25 62 Z" fill="#0d1a2a" stroke="#3b82d4" stroke-width="1.2" opacity="0.92"/>
+            <!-- Visor tint gradient effect -->
+            <path d="M27 50 C27 40 32 34 50 34 C68 34 73 40 73 50 L73 58" fill="none" stroke="#5ba0f0" stroke-width="0.8" opacity="0.4"/>
+            <!-- Visor reflection highlight -->
+            <path d="M33 38 Q42 33 55 36" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+            <!-- Chin vent -->
+            <rect x="38" y="68" width="24" height="5" rx="2" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+            <line x1="44" y1="68" x2="44" y2="73" stroke="#555" stroke-width="0.8"/>
+            <line x1="50" y1="68" x2="50" y2="73" stroke="#555" stroke-width="0.8"/>
+            <line x1="56" y1="68" x2="56" y2="73" stroke="#555" stroke-width="0.8"/>
+            <!-- Top vent -->
+            <rect x="44" y="16" width="12" height="5" rx="2" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+            <line x1="47" y1="16" x2="47" y2="21" stroke="#555" stroke-width="0.8"/>
+            <line x1="50" y1="16" x2="50" y2="21" stroke="#555" stroke-width="0.8"/>
+            <line x1="53" y1="16" x2="53" y2="21" stroke="#555" stroke-width="0.8"/>
+            <!-- Side decal stripe -->
+            <path d="M20 46 Q26 38 32 36" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+            <path d="M80 46 Q74 38 68 36" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Riding Gear</div>
+          <div class="product-name">Helmets &amp; Safety Gear</div>
+          <div class="product-desc">DOT-certified helmets, gloves, jackets and full protection gear.</div>
+          <div class="product-footer">
+            <div class="product-price">Ask for Price</div>
+            <button class="product-btn" onclick="event.stopPropagation();window.open('https://m.me/61570419473946','_blank')">Inquire</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="product-card" onclick="openModal('tools')">
+        <div class="product-thumb">
+          <!-- Realistic combination wrench + socket set -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Wrench handle -->
+            <rect x="14" y="46" width="54" height="9" rx="4" fill="#888" stroke="#aaa" stroke-width="1.2"/>
+            <!-- Wrench open end (left) -->
+            <path d="M14 46 Q8 46 7 50 Q8 55 14 55" fill="none" stroke="#aaa" stroke-width="1.2"/>
+            <path d="M7 48 L10 48" stroke="#777" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M7 53 L10 53" stroke="#777" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Wrench box end (right) -->
+            <circle cx="72" cy="50" r="10" fill="#2a2a2a" stroke="#888" stroke-width="1.5"/>
+            <circle cx="72" cy="50" r="6" fill="#1a1a1a" stroke="#aaa" stroke-width="1"/>
+            <!-- Hex inside box end -->
+            <polygon points="72,44.5 76.7,47.2 76.7,52.8 72,55.5 67.3,52.8 67.3,47.2" fill="none" stroke="#e63946" stroke-width="1"/>
+            <!-- Screwdriver -->
+            <rect x="56" y="22" width="5" height="40" rx="2" fill="#e63946" stroke="#c1121f" stroke-width="1"/>
+            <rect x="57" y="62" width="3" height="16" rx="0.5" fill="#aaa" stroke="#888" stroke-width="0.8"/>
+            <!-- Screwdriver tip (flat) -->
+            <line x1="57" y1="78" x2="60" y2="78" stroke="#ccc" stroke-width="2" stroke-linecap="round"/>
+            <!-- Socket -->
+            <rect x="76" y="28" width="16" height="20" rx="3" fill="#333" stroke="#666" stroke-width="1.2"/>
+            <rect x="79" y="31" width="10" height="7" rx="1" fill="#1a1a1a" stroke="#555" stroke-width="0.8"/>
+            <circle cx="84" cy="44" r="3" fill="#1a1a1a" stroke="#888" stroke-width="1"/>
+            <!-- Socket size label -->
+            <text x="84" y="44.5" text-anchor="middle" dominant-baseline="middle" fill="#aaa" font-size="3.5" font-family="sans-serif">17</text>
+            <!-- Highlight on wrench -->
+            <line x1="20" y1="47" x2="60" y2="47" stroke="#cccccc" stroke-width="0.8" opacity="0.35" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Tools</div>
+          <div class="product-name">Motorcycle Tools &amp; Kits</div>
+          <div class="product-desc">Complete toolkits, wrenches, and maintenance tools for motorcycles.</div>
+          <div class="product-footer">
+            <div class="product-price">Ask for Price</div>
+            <button class="product-btn" onclick="event.stopPropagation();window.open('https://m.me/61570419473946','_blank')">Inquire</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earphones & Speakers -->
+      <div class="product-card" onclick="openModal('audio')">
+        <div class="product-thumb">
+          <!-- Realistic TWS earbuds in charging case -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Charging case body -->
+            <rect x="18" y="50" width="64" height="36" rx="10" fill="#1e1e1e" stroke="#444" stroke-width="1.5"/>
+            <!-- Case lid (open) -->
+            <path d="M18 50 Q18 36 28 33 L72 33 Q82 36 82 50" fill="#252525" stroke="#444" stroke-width="1.5"/>
+            <!-- Case hinge line -->
+            <line x1="18" y1="50" x2="82" y2="50" stroke="#333" stroke-width="1"/>
+            <!-- LED indicator -->
+            <circle cx="50" cy="80" r="3" fill="#4ade80" opacity="0.85"/>
+            <!-- Case interior -->
+            <rect x="24" y="54" width="52" height="26" rx="7" fill="#161616" stroke="#2a2a2a" stroke-width="1"/>
+            <!-- Left earbud -->
+            <ellipse cx="36" cy="67" rx="9" ry="10" fill="#222" stroke="#7c3aed" stroke-width="1.5"/>
+            <circle cx="36" cy="65" r="4" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+            <circle cx="36" cy="65" r="2" fill="#7c3aed"/>
+            <path d="M31 72 Q36 76 41 72" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round"/>
+            <!-- Right earbud -->
+            <ellipse cx="64" cy="67" rx="9" ry="10" fill="#222" stroke="#7c3aed" stroke-width="1.5"/>
+            <circle cx="64" cy="65" r="4" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+            <circle cx="64" cy="65" r="2" fill="#7c3aed"/>
+            <path d="M59 72 Q64 76 69 72" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round"/>
+            <!-- Sound waves above case (left) -->
+            <path d="M22 28 Q20 24 22 20" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <path d="M26 30 Q22 24 26 18" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            <!-- Sound waves above case (right) -->
+            <path d="M78 28 Q80 24 78 20" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <path d="M74 30 Q78 24 74 18" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Tech Gadgets</div>
+          <div class="product-name">Earphones &amp; Speakers</div>
+          <div class="product-desc">Wireless earbuds, Bluetooth speakers, and audio accessories.</div>
+          <div class="product-footer">
+            <div class="product-price">Ask for Price</div>
+            <button class="product-btn" onclick="event.stopPropagation();window.open('https://m.me/61570419473946','_blank')">Inquire</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const FB_MSG = 'https://m.me/61570419473946';
+
+  const SVGS = {
+    engine: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 72 Q20 78 26 78 L74 78 Q80 78 80 72 L80 68 L20 68 Z" fill="#1a1a1a" stroke="#555" stroke-width="1.2"/><rect x="20" y="38" width="60" height="32" rx="3" fill="#2d2d2d" stroke="#555" stroke-width="1.5"/><line x1="20" y1="50" x2="80" y2="50" stroke="#3a3a3a" stroke-width="1"/><line x1="20" y1="58" x2="80" y2="58" stroke="#3a3a3a" stroke-width="1"/><rect x="22" y="26" width="56" height="14" rx="2" fill="#333" stroke="#e63946" stroke-width="1.5"/><circle cx="36" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/><circle cx="50" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/><circle cx="64" cy="27" r="3" fill="#1a1a1a" stroke="#e63946" stroke-width="1"/><rect x="34" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/><rect x="48" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/><rect x="62" y="16" width="4" height="11" rx="1" fill="#888" stroke="#aaa" stroke-width="0.8"/><line x1="36" y1="14" x2="36" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="14" x2="50" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/><line x1="64" y1="14" x2="64" y2="11" stroke="#e63946" stroke-width="1.5" stroke-linecap="round"/><circle cx="36" cy="54" r="7" fill="#252525" stroke="#e63946" stroke-width="1.2"/><circle cx="36" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/><circle cx="64" cy="54" r="7" fill="#252525" stroke="#e63946" stroke-width="1.2"/><circle cx="64" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/><circle cx="50" cy="54" r="7" fill="#252525" stroke="#ff6b35" stroke-width="1.2"/><circle cx="50" cy="54" r="4" fill="#1e1e1e" stroke="#555" stroke-width="0.8"/><rect x="75" y="42" width="8" height="7" rx="2" fill="#1a3a5c" stroke="#3b82d4" stroke-width="1.2"/><rect x="17" y="42" width="7" height="7" rx="2" fill="#2a1a0a" stroke="#f59e0b" stroke-width="1.2"/></svg>`,
+    led: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 40 Q14 30 25 26 L75 26 Q86 30 85 40 L85 62 Q85 70 75 70 L25 70 Q15 70 15 62 Z" fill="#1e1e1e" stroke="#444" stroke-width="1.5"/><path d="M22 42 Q21 33 30 30 L70 30 Q79 33 78 42 L78 60 Q78 66 70 66 L30 66 Q22 66 22 60 Z" fill="#2a2a2a" stroke="#666" stroke-width="1"/><circle cx="50" cy="48" r="16" fill="#0a0a1a" stroke="#3b82d4" stroke-width="1.5"/><circle cx="50" cy="48" r="12" fill="#0d0d2a" stroke="#5ba0f0" stroke-width="1"/><rect x="43" y="44" width="4" height="8" rx="1" fill="#ffffaa" opacity="0.95"/><rect x="48" y="44" width="4" height="8" rx="1" fill="#ffffff" opacity="0.95"/><rect x="53" y="44" width="4" height="8" rx="1" fill="#ffffaa" opacity="0.95"/><circle cx="50" cy="48" r="8" fill="none" stroke="#f0f0ff" stroke-width="0.5" opacity="0.4"/><path d="M26 32 L74 32" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" opacity="0.9"/><path d="M26 64 L74 64" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" opacity="0.7"/><rect x="16" y="43" width="8" height="10" rx="2" fill="#f59e0b" opacity="0.85"/><rect x="76" y="43" width="8" height="10" rx="2" fill="#f59e0b" opacity="0.85"/></svg>`,
+    helmet: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 52 C18 28 26 16 50 16 C74 16 82 28 82 52 L82 64 C82 70 78 74 72 74 L28 74 C22 74 18 70 18 64 Z" fill="#222" stroke="#e63946" stroke-width="1.8"/><path d="M25 50 C25 38 30 30 50 30 C70 30 75 38 75 50 L75 62 C75 65 72 67 68 67 L32 67 C28 67 25 65 25 62 Z" fill="#0d1a2a" stroke="#3b82d4" stroke-width="1.2" opacity="0.92"/><path d="M27 50 C27 40 32 34 50 34 C68 34 73 40 73 50 L73 58" fill="none" stroke="#5ba0f0" stroke-width="0.8" opacity="0.4"/><path d="M33 38 Q42 33 55 36" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/><rect x="38" y="68" width="24" height="5" rx="2" fill="#1a1a1a" stroke="#444" stroke-width="1"/><line x1="44" y1="68" x2="44" y2="73" stroke="#555" stroke-width="0.8"/><line x1="50" y1="68" x2="50" y2="73" stroke="#555" stroke-width="0.8"/><line x1="56" y1="68" x2="56" y2="73" stroke="#555" stroke-width="0.8"/><rect x="44" y="16" width="12" height="5" rx="2" fill="#1a1a1a" stroke="#444" stroke-width="1"/><path d="M20 46 Q26 38 32 36" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/><path d="M80 46 Q74 38 68 36" stroke="#e63946" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/></svg>`,
+    tools: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="46" width="54" height="9" rx="4" fill="#888" stroke="#aaa" stroke-width="1.2"/><path d="M14 46 Q8 46 7 50 Q8 55 14 55" fill="none" stroke="#aaa" stroke-width="1.2"/><path d="M7 48 L10 48" stroke="#777" stroke-width="1.5" stroke-linecap="round"/><path d="M7 53 L10 53" stroke="#777" stroke-width="1.5" stroke-linecap="round"/><circle cx="72" cy="50" r="10" fill="#2a2a2a" stroke="#888" stroke-width="1.5"/><circle cx="72" cy="50" r="6" fill="#1a1a1a" stroke="#aaa" stroke-width="1"/><polygon points="72,44.5 76.7,47.2 76.7,52.8 72,55.5 67.3,52.8 67.3,47.2" fill="none" stroke="#e63946" stroke-width="1"/><rect x="56" y="22" width="5" height="40" rx="2" fill="#e63946" stroke="#c1121f" stroke-width="1"/><rect x="57" y="62" width="3" height="16" rx="0.5" fill="#aaa" stroke="#888" stroke-width="0.8"/><line x1="57" y1="78" x2="60" y2="78" stroke="#ccc" stroke-width="2" stroke-linecap="round"/><rect x="76" y="28" width="16" height="20" rx="3" fill="#333" stroke="#666" stroke-width="1.2"/><rect x="79" y="31" width="10" height="7" rx="1" fill="#1a1a1a" stroke="#555" stroke-width="0.8"/><circle cx="84" cy="44" r="3" fill="#1a1a1a" stroke="#888" stroke-width="1"/><line x1="20" y1="47" x2="60" y2="47" stroke="#cccccc" stroke-width="0.8" opacity="0.35" stroke-linecap="round"/></svg>`,
+    audio: `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="18" y="50" width="64" height="36" rx="10" fill="#1e1e1e" stroke="#444" stroke-width="1.5"/><path d="M18 50 Q18 36 28 33 L72 33 Q82 36 82 50" fill="#252525" stroke="#444" stroke-width="1.5"/><line x1="18" y1="50" x2="82" y2="50" stroke="#333" stroke-width="1"/><circle cx="50" cy="80" r="3" fill="#4ade80" opacity="0.85"/><rect x="24" y="54" width="52" height="26" rx="7" fill="#161616" stroke="#2a2a2a" stroke-width="1"/><ellipse cx="36" cy="67" rx="9" ry="10" fill="#222" stroke="#7c3aed" stroke-width="1.5"/><circle cx="36" cy="65" r="4" fill="#1a1a1a" stroke="#555" stroke-width="1"/><circle cx="36" cy="65" r="2" fill="#7c3aed"/><path d="M31 72 Q36 76 41 72" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round"/><ellipse cx="64" cy="67" rx="9" ry="10" fill="#222" stroke="#7c3aed" stroke-width="1.5"/><circle cx="64" cy="65" r="4" fill="#1a1a1a" stroke="#555" stroke-width="1"/><circle cx="64" cy="65" r="2" fill="#7c3aed"/><path d="M59 72 Q64 76 69 72" fill="none" stroke="#555" stroke-width="1" stroke-linecap="round"/><path d="M22 28 Q20 24 22 20" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path d="M26 30 Q22 24 26 18" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/><path d="M78 28 Q80 24 78 20" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path d="M74 30 Q78 24 74 18" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/></svg>`
+  };
+
+  const products = {
+    engine: {
+      cat: 'Motorcycle', title: 'Engine Spare Parts',
+      desc: 'We carry a wide selection of genuine OEM and quality aftermarket engine components compatible with popular motorcycle brands including Honda, Yamaha, Suzuki, and Kawasaki.',
+      features: ['Pistons, rings, and gasket sets','Crankshafts and connecting rods','Cylinder heads and valves','Camshafts and timing components','Compatible with most PH motorcycle brands','OEM & aftermarket options available']
+    },
+    led: {
+      cat: 'Motorcycle', title: 'LED Lights & Accessories',
+      desc: 'Upgrade your motorcycle\'s visibility and style with our premium LED lighting solutions. Brighter, longer-lasting, and more energy-efficient than stock bulbs.',
+      features: ['LED headlight bulbs (H4, H6, H7)','LED tail lights and brake lights','Underbody and accent LED strips','Waterproof & vibration-resistant','Easy plug-and-play installation','Multiple color options available']
+    },
+    helmet: {
+      cat: 'Riding Gear', title: 'Helmets & Safety Gear',
+      desc: 'Stay safe on every ride with our collection of DOT and ECE-certified helmets paired with complete riding protection accessories for all types of riders.',
+      features: ['Full-face, open-face & half-face helmets','DOT / ECE certified for road safety','Riding gloves with knuckle protection','Mesh & leather riding jackets','Knee and elbow guards','Available in multiple sizes & colors']
+    },
+    tools: {
+      cat: 'Tools', title: 'Motorcycle Tools & Kits',
+      desc: 'Professional-grade and DIY-friendly toolkits designed specifically for motorcycle maintenance and repair work. Never be stranded without the right tool again.',
+      features: ['Complete socket and wrench sets','Chain breaker and rivet tools','Tire repair and inflator kits','Spark plug and valve tools','Portable compact tool rolls','Suitable for all motorcycle brands']
+    },
+    audio: {
+      cat: 'Tech Gadgets', title: 'Earphones & Speakers',
+      desc: 'Experience superior sound quality with our range of audio accessories. From daily commute earphones to powerful Bluetooth speakers for any occasion.',
+      features: ['True wireless Bluetooth earbuds','Noise-cancelling in-ear headphones','Portable Bluetooth speakers','Wired earphones for all devices','Compatible with iOS & Android','Long battery life options available']
+    }
+  };
+
+  function openModal(id) {
+    const p = products[id];
+    document.getElementById('modalCat').textContent = p.cat;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    document.getElementById('modalFeatures').innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+    document.getElementById('modalThumb').innerHTML =
+      `<button class="modal-close" onclick="closeModal()">✕</button>${SVGS[id]}`;
+    document.getElementById('modalInquireBtn').href =
+      `${FB_MSG}?text=Hi! I'm interested in: ${encodeURIComponent(p.title)}`;
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('productModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+
+<!-- SERVICE MODAL -->
+<div class="svc-modal-overlay" id="svcModal">
+  <div class="svc-modal-box">
+    <div class="svc-modal-header">
+      <div class="svc-modal-title-wrap">
+        <span class="svc-modal-icon" id="svcModalIcon"></span>
+        <span class="svc-modal-title" id="svcModalTitle"></span>
+      </div>
+      <button class="svc-modal-close" onclick="closeSvcModal()">✕</button>
+    </div>
+    <div class="svc-modal-scroll">
+      <div class="svc-modal-cat" id="svcModalCat"></div>
+      <div class="svc-modal-desc" id="svcModalDesc"></div>
+      <ul class="svc-modal-list" id="svcModalList"></ul>
+    </div>
+    <div class="svc-modal-footer">
+      <span class="svc-modal-tag" id="svcModalTag"></span>
+      <a id="svcModalBtn" class="svc-modal-btn" href="https://m.me/61570419473946" target="_blank">💬 Book / Inquire</a>
+    </div>
+  </div>
+</div>
+
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <div class="section-sub">Click any service card to see full details. Everything you need — all in one place.</div>
+    <div class="services-categories">
+
+      <!-- MOTORCYCLE -->
+      <div class="service-cat-card" onclick="openSvcModal('moto')">
+        <div class="service-cat-header">
+          <span class="service-cat-icon">🏍️</span>
+          <span class="service-cat-name">Motorcycle</span>
+        </div>
+        <ul class="service-cat-items">
+          <li>Repaint</li>
+          <li>Repair</li>
+          <li>Change Oil</li>
+          <li>Wiring</li>
+        </ul>
+      </div>
+
+      <!-- CAR -->
+      <div class="service-cat-card" onclick="openSvcModal('car')">
+        <div class="service-cat-header">
+          <span class="service-cat-icon">🚗</span>
+          <span class="service-cat-name">Car</span>
+        </div>
+        <ul class="service-cat-items">
+          <li>Under Chassis Repair</li>
+          <li>Electrical Check Up</li>
+          <li>Carwash</li>
+          <li>Car Aircon Cleaning</li>
+          <li>Car Repaint / Retouch</li>
+          <li>Change Oil</li>
+          <li>Back to Zero</li>
+          <li>Installing Remote Control</li>
+        </ul>
+      </div>
+
+      <!-- PAINTING -->
+      <div class="service-cat-card" onclick="openSvcModal('paint')">
+        <div class="service-cat-header">
+          <span class="service-cat-icon">🎨</span>
+          <span class="service-cat-name">Painting</span>
+        </div>
+        <ul class="service-cat-items">
+          <li>House Painting</li>
+          <li>Car Painting</li>
+          <li>Motor Painting</li>
+        </ul>
+      </div>
+
+      <!-- WIRING -->
+      <div class="service-cat-card" onclick="openSvcModal('wiring')">
+        <div class="service-cat-header">
+          <span class="service-cat-icon">⚡</span>
+          <span class="service-cat-name">Wiring</span>
+        </div>
+        <ul class="service-cat-items">
+          <li>House Wiring</li>
+          <li>Electrical Wiring</li>
+        </ul>
+      </div>
+
+      <!-- OTHER SERVICES -->
+      <div class="other-services-row">
+        <div class="other-services-card">
+          <div class="other-services-header">
+            <span>🔩</span> Other Services
+          </div>
+          <div class="other-services-grid">
+            <div class="other-service-pill" onclick="openSvcModal('plumbing')"><span>🔧</span> Plumbing</div>
+            <div class="other-service-pill" onclick="openSvcModal('welding')"><span>🔥</span> Welding</div>
+            <div class="other-service-pill" onclick="openSvcModal('electronics')"><span>📺</span> Electronics Repair</div>
+            <div class="other-service-pill" onclick="openSvcModal('pc')"><span>💻</span> PC / Laptop Reformatting</div>
+            <div class="other-service-pill" onclick="openSvcModal('mechanics')"><span>🚘</span> On-Call Mechanics</div>
+            <div class="other-service-pill" onclick="openSvcModal('aircon')"><span>❄️</span> Aircon Cleaning</div>
+            <div class="other-service-pill" onclick="openSvcModal('sound')"><span>🔊</span> Sound System Rent</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const SVC_FB = 'https://m.me/61570419473946';
+
+  const services = {
+    moto: {
+      icon: '🏍️', cat: 'Motorcycle Services', title: 'Motorcycle',
+      desc: 'We provide complete motorcycle servicing — from basic maintenance like oil changes and wiring, to full repaints and body repairs. Our mechanics are experienced with all major Filipino motorcycle brands.',
+      items: ['Repaint — full body color change & custom finish','Repair — engine, chassis, and mechanical fixes','Change Oil — engine oil replacement & filter check','Wiring — electrical rewiring and troubleshooting'],
+      tag: 'Drop-in or book via Facebook'
+    },
+    car: {
+      icon: '🚗', cat: 'Car Services', title: 'Car',
+      desc: 'Full-range car servicing covering both mechanical and cosmetic needs. Whether you need a deep clean, aircon maintenance, or an ECU reset — we handle it all.',
+      items: ['Under Chassis Repair — rust, suspension & undercarriage work','Electrical Check Up — full diagnostics & electrical testing','Carwash — interior & exterior deep cleaning','Car Aircon Cleaning — evaporator & condenser flush','Car Repaint / Retouch — full repaint or spot correction','Change Oil — oil & filter replacement for all car types','Back to Zero — ECU / odometer reset service','Installing Remote Control — keyless entry & alarm systems'],
+      tag: 'Call or message to schedule'
+    },
+    paint: {
+      icon: '🎨', cat: 'Painting Services', title: 'Painting',
+      desc: 'Professional painting services for homes, cars, and motorcycles. We use quality paints and proper finishing techniques to give you a durable, clean result.',
+      items: ['House Painting — interior & exterior walls, ceiling, trims','Car Painting — full respray, touch-up, and custom colors','Motor Painting — frame, body panels, and custom designs'],
+      tag: 'Request a quote via Facebook'
+    },
+    wiring: {
+      icon: '⚡', cat: 'Electrical / Wiring Services', title: 'Wiring',
+      desc: 'Licensed electrical wiring work for homes and vehicles. We ensure safe, code-compliant installations and reliable repairs for all wiring needs.',
+      items: ['House Wiring — new installation, rewiring, panel upgrades','Electrical Wiring — outlets, switches, lighting, circuit extensions'],
+      tag: 'Contact us for site inspection'
+    },
+    plumbing: {
+      icon: '🔧', cat: 'Other Services', title: 'Plumbing',
+      desc: 'Reliable plumbing services for homes and small commercial spaces. We fix leaks, install fixtures, and handle drainage issues quickly and affordably.',
+      items: ['Pipe repair and leak fixing','Faucet & fixture installation','Drainage unclogging & maintenance','Water line installation'],
+      tag: 'Book via call or Facebook message'
+    },
+    welding: {
+      icon: '🔥', cat: 'Other Services', title: 'Welding',
+      desc: 'Professional welding for metal repairs, fabrication, and structural work. We work on vehicles, gates, grills, and custom metal projects.',
+      items: ['Arc / MIG welding','Vehicle frame & chassis welding','Gate, grill & fence fabrication','Custom metal work on request'],
+      tag: 'Inquire for quotes & scheduling'
+    },
+    electronics: {
+      icon: '📺', cat: 'Other Services', title: 'Electronics Repair',
+      desc: 'We diagnose and repair home electronics including TVs, audio equipment, and small appliances. Fast turnaround with honest pricing.',
+      items: ['TV repair (LED, LCD, flat screen)','Home audio & speaker systems','Small appliance troubleshooting','Component-level diagnostics'],
+      tag: 'Bring unit to our shop or message us'
+    },
+    pc: {
+      icon: '💻', cat: 'Other Services', title: 'PC / Laptop Reformatting',
+      desc: 'Complete PC and laptop reformatting service — clean OS installation, driver setup, and performance optimization to get your device running like new.',
+      items: ['Windows OS fresh install (Win 10 / 11)','Driver installation & configuration','Virus & malware removal','Data backup before format (on request)','Basic hardware check & cleaning'],
+      tag: 'Walk-in or message us to schedule'
+    },
+    mechanics: {
+      icon: '🚘', cat: 'Other Services', title: 'On-Call Mechanics',
+      desc: 'Stranded on the road? Our on-call mechanics can come to you for emergency vehicle repairs and roadside assistance anywhere in the area.',
+      items: ['Emergency roadside repair','Battery jump-start & replacement','Flat tire assistance','Basic on-site diagnostics','Fuel delivery assistance'],
+      tag: 'Call 09070933165 / 09176371290'
+    },
+    aircon: {
+      icon: '❄️', cat: 'Other Services', title: 'Aircon Cleaning',
+      desc: 'Professional aircon cleaning and maintenance for home and car air conditioning units. Regular cleaning improves cooling efficiency and extends unit life.',
+      items: ['Split-type & window-type AC cleaning','Car aircon evaporator & condenser flush','Refrigerant check & recharging','Filter wash & general cleaning','Preventive maintenance service'],
+      tag: 'Book a schedule via Facebook'
+    },
+    sound: {
+      icon: '🔊', cat: 'Other Services', title: 'Sound System Rent',
+      desc: 'Rent our quality sound system for events, parties, gatherings, and celebrations. Available for indoor and outdoor use with flexible rental packages.',
+      items: ['High-powered speakers & amplifier','Wireless microphones (handheld/headset)','Mixer & audio equipment included','Delivery & setup within the area','Half-day and full-day packages available'],
+      tag: 'Reserve via Facebook or call'
+    }
+  };
+
+  function openSvcModal(id) {
+    const s = services[id];
+    document.getElementById('svcModalIcon').textContent = s.icon;
+    document.getElementById('svcModalTitle').textContent = s.title;
+    document.getElementById('svcModalCat').textContent = s.cat;
+    document.getElementById('svcModalDesc').textContent = s.desc;
+    document.getElementById('svcModalList').innerHTML = s.items.map(i => `<li>${i}</li>`).join('');
+    document.getElementById('svcModalTag').textContent = s.tag;
+    document.getElementById('svcModalBtn').href =
+      `${SVC_FB}?text=Hi! I'd like to inquire about: ${encodeURIComponent(s.title)}`;
+    document.getElementById('svcModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSvcModal() {
+    document.getElementById('svcModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('svcModal').addEventListener('click', function(e) {
+    if (e.target === this) closeSvcModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeSvcModal(); }
+  });
+</script>
+
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <div class="section-title">Contact Us</div>
+    <div class="section-sub">Reach out for orders, repair bookings, or product inquiries.</div>
+    <div class="contact-grid">
+      <div class="contact-info">
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <div class="label">Phone / Mobile</div>
+            <div class="value">
+              <a href="tel:09070933165">09070933165</a>
+              <span style="color:#444;margin:0 6px">/</span>
+              <a href="tel:09176371290">09176371290</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <div class="label">Address</div>
+            <div class="value">Z6 Baras, Canaman, Camarines Sur</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div class="contact-detail">
+            <div class="label">Facebook Page</div>
+            <div class="value"><a href="https://www.facebook.com/people/Josheen-Techmoto/61570419473946/" style="color:#3b82d4;text-decoration:none">Josheen Techmoto</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-detail">
+            <div class="label">Message Us</div>
+            <div class="value">Send us a message on Facebook Messenger for fast response</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📦</div>
+          <div class="contact-detail">
+            <div class="label">Shipping</div>
+            <div class="value">Nationwide delivery via courier</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hours-card">
+        <div class="hours-title">🕐 Business Hours</div>
+        <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time open">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time open">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time open">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time open">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time open">8:00 AM – 8:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time open">8:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time open">9:00 AM – 5:00 PM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="map-section" id="location">
+  <div class="container">
+    <div class="section-label">Find Us</div>
+    <div class="section-title">Our Location</div>
+    <div class="section-sub">Visit us at our shop in Canaman, Camarines Sur.</div>
+    <div class="map-wrapper">
+      <div class="map-placeholder-icon">📍</div>
+      <div class="map-address-badge">Z6 Baras, Canaman, Camarines Sur</div>
+      <div class="map-placeholder-text">Call us at <strong style="color:#ddd">09070933165</strong> / <strong style="color:#ddd">09176371290</strong> for directions</div>
+      <a href="https://maps.google.com/?q=Canaman,Camarines+Sur,Philippines" target="_blank" class="btn-outline" style="margin-top:8px;font-size:13px;padding:9px 20px;border-color:#444;color:#ccc">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="social-section">
+  <div class="container">
+    <div class="section-label">Follow Us</div>
+    <div class="section-title">Stay Connected</div>
+    <p style="color:#666;font-size:15px;margin-top:10px">Follow our Facebook page for the latest products, deals, promos, and updates.</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com/people/Josheen-Techmoto/61570419473946/" class="social-link">
+        <span class="social-icon">📘</span> Facebook — Josheen Techmoto
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<div class="cta-section">
+  <div class="container">
+    <h2>Ready to Order or Book a Repair?</h2>
+    <p>Call us directly or message us on Facebook — we're always ready to help.</p>
+    <div class="cta-btns">
+      <a href="tel:09070933165" class="btn-phone">📞 09070933165</a>
+      <a href="tel:09176371290" class="btn-phone">📞 09176371290</a>
+      <a href="https://www.facebook.com/people/Josheen-Techmoto/61570419473946/" class="btn-primary" style="font-size:15px;padding:13px 30px">
+        💬 Message on Facebook
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <div class="footer-logo-wrap">
+    <img class="footer-logo-img" src="Logo.jpg" alt="Josheen Techmoto" />
+    <div class="footer-logo">Josheen <span>Techmoto</span></div>
+  </div>
+  <div class="footer-tagline">Auto-Motor Repair Services · Motorcycle Parts · Tech Gadgets · Accessories</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="#location">Location</a>
+    <a href="https://www.facebook.com/people/Josheen-Techmoto/61570419473946/">Facebook</a>
+  </div>
+  <div class="footer-copy">© 2026 Josheen Techmoto. All rights reserved. · Z6 Baras, Canaman, Camarines Sur · 09070933165 / 09176371290</div>
+  <div class="made-with">Developed by <a href="https://jadewebsite.github.io/apl/index.html" target="_blank" style="color:#3b82d4;font-weight:700;text-decoration:none;">Anthony Padilla Locenario</a></div>
+</footer>
+
+</body>
+</html>
